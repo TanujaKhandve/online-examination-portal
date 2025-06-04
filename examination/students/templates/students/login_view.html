@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Container */
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        input {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        p {
+            font-size: 14px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Login</h2>
+
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+
+        <form id="loginForm" method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <script>
+        // Adding an event listener to the login form
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            console.log("Login form submitted!"); // Check if this logs in the browser console
+
+            // Optionally, you can add more debugging information here:
+            console.log("Email:", document.getElementById("email").value);
+            console.log("Password:", document.getElementById("password").value);
+        });
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            // Redirect to dashboard if the user is already logged in
+            window.location.href = '{% url 'dashboard' %}';
+        }
+
+        // Handle the login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Dummy check (In real-world scenarios, authenticate with the server)
+            if (email === 'test@example.com' && password === 'password123') {
+                alert('Login successful!');
+
+                // Save the login status in localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+
+                // Redirect to the dashboard
+                window.location.href = '{% url 'dashboard' %}';
+            } else {
+                alert('Invalid email or password. Please try again.');
+            }
+        });
+
+
+    </script>
+
+</body>
+</html>

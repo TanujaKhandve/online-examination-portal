@@ -1,0 +1,120 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Online Examination Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: rgba(0, 77, 64, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .features {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features ul li {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .features ul li::before {
+            content: "✔";
+            color: #00ffcc;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: white;
+            color: #004d40;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>About Us</h1>
+        <p>
+            The <strong>Online Examination Portal</strong> is a web-based platform designed to facilitate and manage online exams efficiently. 
+            It offers students a seamless experience to register, log in, attempt exams, and receive instant results.
+        </p>
+
+        <div class="features">
+            <h2>Key Features:</h2>
+            <ul>
+                <li>Secure user authentication</li>
+                <li>Real-time exam evaluation</li>
+                <li>Time-bound assessments</li>
+                <li>Scalable and robust backend</li>
+                <li>Admin control for managing exams & results</li>
+                <li>User-friendly dashboard</li>
+                <li>Instant result generation</li>
+            </ul>
+        </div>
+
+        <a href="{% url 'base' %}" class="btn">Back to Home</a>
+    </div>
+
+</body>
+</html>

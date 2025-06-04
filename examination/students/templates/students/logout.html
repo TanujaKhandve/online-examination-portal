@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: #f0f9eb;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-exclamation {
+            color:rgb(40, 117, 175);
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-cancel {
+            background: transparent;
+            color: #909399;
+        }
+
+        .btn-confirm {
+            background:rgb(193, 43, 136);
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+            transform: translateY(-1px);
+        }
+
+        .btn-confirm:hover {
+            background:rgb(193, 43, 136);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon-circle">
+            <span class="icon-exclamation">!</span>
+        </div>
+        <h2>Are you leaving?</h2>
+        <p class="subtitle">Are you sure you want to log out? All your unsaved data will be lost.</p>
+        <div class="button-group">
+            <a href="{% url 'dashboard' %}" class="btn btn-cancel">Cancel</a>
+            <button onclick="confirmLogout()" class="btn btn-confirm">Yes →</button>
+        </div>
+    </div>
+
+    <script>
+        function confirmLogout() {
+            // Keeping the original logic
+            window.location.href = "{% url 'base' %}";
+        }
+    </script>
+</body>
+</html>

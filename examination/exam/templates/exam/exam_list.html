@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Exams</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        .exam-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .exam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .exam-card a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Available Exams</h1>
+        <div>
+            {% for exam in exams %}
+                <div class="exam-card">
+                    <a href="{% url 'exam_start' exam.id %}">{{ exam.name }}</a>
+                </div>
+            {% empty %}
+                <p>No exams are available at the moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

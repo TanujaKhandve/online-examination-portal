@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(0, 77, 64, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: white;
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .icon-left {
+            left: 10px;
+        }
+
+        .icon-right {
+            right: 10px;
+        }
+
+        form input {
+            width: 100%;
+            padding: 15px 20px 15px 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        form input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        form button {
+            width: 100%;
+            padding: 15px;
+            background: white;
+            color: #004d40;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .error-message {
+            background: rgba(255, 87, 87, 0.1);
+            color: #ff5757;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* SVG Icons */
+        .user-icon, .email-icon, .lock-icon, .phone-icon {
+            width: 20px;
+            height: 20px;
+            color: #004d40;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Add style for active lock icon */
+        .lock-icon.active {
+            transform: rotate(180deg);
+            color: #d76d77;
+        }
+        
+        /* Remove built-in eye icon in Chrome, Edge, and Safari */
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear,
+        input[type="password"]::-webkit-credentials-auto-fill-button {
+            display: none !important;
+            pointer-events: none;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li class="error-message">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="input-group">
+                <div class="input-icon icon-left">
+                    <svg class="user-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="off" required>
+            </div>
+            
+            <div class="input-group">
+                <div class="input-icon icon-left">
+                    <svg class="email-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16v16H4z"></path>
+                        <path d="M22 6L12 13 2 6"></path>
+                    </svg>
+                </div>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="input-group">
+                <div class="input-icon icon-left">
+                    <svg class="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                </div>
+                <input type="tel" id="phoneno" name="phoneno" placeholder="Enter your phone number" required>
+            </div>
+            
+            <div class="input-group">
+                <div class="input-icon icon-left" id="togglePassword">
+                    <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                <input type="password" id="password" name="password" placeholder="Create a password" autocomplete="new-password" required>
+            </div>
+            
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("togglePassword").addEventListener("click", function () {
+            var passwordField = document.getElementById("password");
+            var lockIcon = document.querySelector(".lock-icon");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                lockIcon.classList.add("active"); // Rotate icon when password is visible
+            } else {
+                passwordField.type = "password";
+                lockIcon.classList.remove("active"); // Reset rotation
+            }
+        });
+    </script>
+</body>
+</html>
+

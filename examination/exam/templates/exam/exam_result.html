@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .result-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .result-container h1 {
+            margin-bottom: 10px;
+        }
+        .btn-back {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #ff9966;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .btn-back:hover {
+            background: #ff5e62;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Exam Result</h1>
+        <p><strong>Exam:</strong> {{ exam.name }}</p>
+        <p><strong>Marks:</strong> {{ result.marks_obtained }} / {{ result.total_marks }}</p>
+        <p><strong>Total Marks:</strong> {{ result.total_marks }}</p>
+        <a href="{% url 'dashboard' %}" class="btn-back">Back to Dashboard</a>
+    </div>
+</body>
+</html>

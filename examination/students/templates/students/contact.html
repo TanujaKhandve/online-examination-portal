@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Online Examination Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Attractive Background */
+        body {
+            background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        /* Contact Container */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Left Section - Contact Info */
+        .contact-info {
+            width: 40%;
+            background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+            color: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .contact-info h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .contact-info p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+        }
+
+        /* Right Section - Contact Form */
+        .contact-form {
+            width: 60%;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-form h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background: #f9f9f9;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: #d76d77;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+            border: none;
+        }
+
+        .btn:hover {
+            background: #d76d77;
+            transform: translateY(-3px);
+        }
+
+        /* Success Message */
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 800px) {
+            .container {
+                flex-direction: column;
+            }
+            .contact-info, .contact-form {
+                width: 100%;
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Contact Info Section -->
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p><i>📍</i> Address: Pune, Maharashtra</p>
+            <p><i>📞</i> Phone: +91 9309268535</p>
+            <p><i>📧</i> Email: support@examportal.com</p>
+            <p><i>⏳</i> Support Hours: Mon - Fri (9:00 AM - 5:00 PM)</p>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="contact-form">
+            <h2>Get in Touch</h2>
+
+            <!-- Django Contact Form -->
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+                <a href="{% url 'dashboard' %}" class="btn" style="margin-left: 10px;">Back to Dashboard</a>
+            </form>
+
+            <!-- Success Message 
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert-success">{{ message }}</div>
+                {% endfor %}
+            {% endif %}-->
+        </div>
+    </div>
+
+</body>
+</html>

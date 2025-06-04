@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Exam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #333;
+        }
+        .question {
+            text-align: left;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .btn-submit {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #ff9966;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            background: #ff5e62;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Exam: {{ exam.name }}</h2>
+        <form method="POST" action="{% url 'submit_exam' exam.id %}">
+            {% csrf_token %}
+            {% for question in exam.questions.all %}
+                <div class="question">
+                    <p><strong>{{ question.text }}</strong></p>
+                    <div class="options">
+                        {% for option in question.options.all %}
+                            <label><input type="radio" name="question_{{ question.id }}" value="{{ option.id }}"> {{ option.text }}</label>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn-submit">Submit Exam</button>
+        </form>
+    </div>
+</body>
+</html>
